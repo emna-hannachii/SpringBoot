@@ -23,6 +23,5 @@ public interface IAbonnementService {
 
     List<Abonnement> retrieveAbonnementsByDates(LocalDate startDate, LocalDate endDate);
 
-    public void showMonthlyRecurringRevenue();
 
 }
