@@ -87,11 +87,4 @@ public class InscriptionService implements IInscriptionService {
 
 
 
-
-
-
-
-
-
-
 }

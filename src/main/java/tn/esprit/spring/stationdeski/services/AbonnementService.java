@@ -2,20 +2,27 @@ package tn.esprit.spring.stationdeski.services;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import sun.rmi.runtime.Log;
 import tn.esprit.spring.stationdeski.entities.Abonnement;
+import tn.esprit.spring.stationdeski.entities.Skieur;
 import tn.esprit.spring.stationdeski.entities.TypeAbonnement;
 import tn.esprit.spring.stationdeski.repositories.AbonnementRepository;
+import tn.esprit.spring.stationdeski.repositories.SkieurRepository;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Set;
+
+import static tn.esprit.spring.stationdeski.entities.TypeAbonnement.MENSUEL;
 
 @Service
 @AllArgsConstructor
 public class AbonnementService implements IAbonnementService{
    AbonnementRepository abonnementRepository;
-
+   SkieurRepository skieurRepository;
     @Override
     public List<Abonnement> retrieveAllAbonnements() {
         return (List<Abonnement>) abonnementRepository.findAll();
@@ -55,4 +62,32 @@ public class AbonnementService implements IAbonnementService{
          return ab;
     }
 
-}
+    @Scheduled(cron = "* * 8 * * *") // ts les js à 8h
+    public void retrieveSubscriptions(){
+        LocalDate dateFin = LocalDate.now().plusDays(7);
+        List<Abonnement> list = abonnementRepository.findByDateFinBefore(dateFin);
+        for (Abonnement ab : list) {
+            Skieur s = skieurRepository.findById(ab.getIdAbonnement()).orElse(null);
+            if (s != null) {
+                System.out.println("Skieur " +s.getNomS() + " " + s.getPrenomS() + " Num Skieur " + s.getNumSkieur());
+            }
+        }
+    }
+
+    @Scheduled(cron = "* * 8 * * *") // ts les js à 8h
+    public void showMonthlyRecurringRevenue() {
+        LocalDate now = LocalDate.now();
+        List<Abonnement> ab = abonnementRepository.findByDateDebutBeforeAndDateFinAfter(now, now);
+
+        float mrr = 0;
+        for (Abonnement a : ab) {
+            mrr += a.getPrixAbon();
+        }
+
+        System.out.println("Le MRR est de " + mrr + " dinars.");
+    }
+
+    }
+
+
+

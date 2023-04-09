@@ -18,4 +18,5 @@ public interface IInscriptionService {
 
     Inscription assignInscriptionToCours(Long numInscription, Long numCours);
     Inscription addInscriptionAndAssignToSkieurAndCours(Inscription inscri, Long numSkieur, Long numCours);
+
 }

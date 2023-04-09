@@ -12,4 +12,8 @@ public interface AbonnementRepository extends CrudRepository<Abonnement, Integer
 
     List<Abonnement> findByTypeAbonnement(TypeAbonnement typeAbon);
     List<Abonnement> findByDateDebutBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Abonnement> findByDateFinBefore(LocalDate endDate);
+
+  List<Abonnement> findByDateDebutBeforeAndDateFinAfter(LocalDate a, LocalDate b);
 }

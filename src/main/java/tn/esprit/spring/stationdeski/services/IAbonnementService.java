@@ -22,4 +22,7 @@ public interface IAbonnementService {
     Set<Abonnement> getAbonnementByType(TypeAbonnement type);
 
     List<Abonnement> retrieveAbonnementsByDates(LocalDate startDate, LocalDate endDate);
+
+    public void showMonthlyRecurringRevenue();
+
 }
