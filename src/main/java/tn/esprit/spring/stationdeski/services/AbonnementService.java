@@ -78,12 +78,10 @@ public class AbonnementService implements IAbonnementService{
     public void showMonthlyRecurringRevenue() {
         LocalDate now = LocalDate.now();
         List<Abonnement> ab = abonnementRepository.findByDateDebutBeforeAndDateFinAfter(now, now);
-
         float mrr = 0;
         for (Abonnement a : ab) {
             mrr += a.getPrixAbon();
         }
-
         System.out.println("Le MRR est de " + mrr + " dinars.");
     }
 

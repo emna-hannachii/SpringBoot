@@ -1,6 +1,7 @@
 package tn.esprit.spring.stationdeski.services;
 
 import tn.esprit.spring.stationdeski.entities.Moniteur;
+import tn.esprit.spring.stationdeski.entities.Support;
 
 import java.util.List;
 
@@ -16,5 +17,4 @@ public interface IMoniteurService {
     void deleteMoniteur( Integer idMoniteur);
 
     Moniteur addMoniteurAndAssignToCours(Moniteur moniteur);
-
 }

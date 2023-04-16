@@ -10,11 +10,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.stationdeski.entities.Couleur;
 import tn.esprit.spring.stationdeski.entities.Moniteur;
 import tn.esprit.spring.stationdeski.entities.Piste;
 import tn.esprit.spring.stationdeski.entities.Skieur;
 import tn.esprit.spring.stationdeski.services.IPisteService;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -84,6 +86,13 @@ public class PisteRestController {
     public Piste updatePiste(@RequestBody Piste p) {
         Piste piste= pisteService.updatePiste(p);
         return piste;
+    }
+
+
+    @GetMapping("/nombreSkieursParCouleurPiste")
+    public HashMap<Couleur, Integer> nombreSkieursParCouleurPiste() {
+
+        return pisteService.nombreSkieursParCouleurPiste();
     }
 
 

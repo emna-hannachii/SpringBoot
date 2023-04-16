@@ -2,15 +2,19 @@ package tn.esprit.spring.stationdeski.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.spring.stationdeski.entities.Couleur;
+import tn.esprit.spring.stationdeski.entities.Inscription;
 import tn.esprit.spring.stationdeski.entities.Piste;
 import tn.esprit.spring.stationdeski.repositories.PisteRepository;
+import tn.esprit.spring.stationdeski.repositories.SkieurRepository;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class PisteService implements IPisteService{
     PisteRepository pisteRepository;
+    SkieurRepository skieurRepository;
     @Override
     public List<Piste> retrieveAllPistes() {
             return (List<Piste>) pisteRepository.findAll();
@@ -39,4 +43,19 @@ public class PisteService implements IPisteService{
         pisteRepository.deleteById(idPiste);
 
     }
+
+    @Override
+    public HashMap<Couleur,Integer> nombreSkieursParCouleurPiste() {
+        HashMap<Couleur,Integer> nombreSkieursParCouleur = new HashMap<>();
+
+        int nbskieurs =0;
+        for (Couleur c: Couleur.values()) {
+            nbskieurs = skieurRepository.getPistesBySkieurs(c).size();
+            nombreSkieursParCouleur.put(c, nbskieurs);
+        }
+        return nombreSkieursParCouleur;
+    }
+
+
 }
+

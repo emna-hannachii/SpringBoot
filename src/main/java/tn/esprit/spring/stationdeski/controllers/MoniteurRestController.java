@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.stationdeski.entities.Inscription;
 import tn.esprit.spring.stationdeski.entities.Moniteur;
+import tn.esprit.spring.stationdeski.entities.Support;
 import tn.esprit.spring.stationdeski.services.IMoniteurService;
 
 import java.util.List;
@@ -91,6 +92,7 @@ public class MoniteurRestController {
         Moniteur moniteur=moniteurService.addMoniteurAndAssignToCours(m);
         return moniteur;
     }
+
 
 }
 

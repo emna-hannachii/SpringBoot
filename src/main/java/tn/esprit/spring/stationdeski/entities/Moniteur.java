@@ -1,9 +1,7 @@
 package tn.esprit.spring.stationdeski.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,15 +15,16 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table( name = "Moniteur")
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Moniteur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idMoniteur")
-    private Integer idMoniteur; // Clé primaire
-    private Long numMoniteur;
-    private String nomM;
-    private String prenomM;
-    private LocalDate dateRecru;
+    Integer idMoniteur; // Clé primaire
+    Long numMoniteur;
+    String nomM;
+    String prenomM;
+    LocalDate dateRecru;
 
 // Constructeur et accesseurs (getters) et mutateurs (setters)
 

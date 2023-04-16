@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.stationdeski.entities.Abonnement;
 import tn.esprit.spring.stationdeski.entities.Cours;
 import tn.esprit.spring.stationdeski.entities.Moniteur;
+import tn.esprit.spring.stationdeski.entities.Support;
 import tn.esprit.spring.stationdeski.services.ICoursService;
 
 import java.util.List;
@@ -86,4 +87,10 @@ public class CoursRestController {
         return cours;
     }
 
+
+    @GetMapping("numWeek")
+    public List<Integer> numWeeks(Long numMoniteur, Support support){
+        return coursService.numWeeksCourseOfMoniteurBySupport(numMoniteur, support);
+
+    }
 }
