@@ -1,6 +1,7 @@
 package tn.esprit.spring.stationdeski.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Inscription implements Serializable {
 // Constructeur et accesseurs (getters) et mutateurs (setters)
 
     @ManyToOne
+    @JsonIgnore
     private Skieur skieur ;
 
    @ManyToOne

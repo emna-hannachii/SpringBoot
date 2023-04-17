@@ -1,4 +1,5 @@
 package tn.esprit.spring.stationdeski.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class Piste implements Serializable {
 
     //mapped by yaani howa child w lekher parent
     @ManyToMany(mappedBy = "pistes")
-
+    @JsonIgnore
     private Set<Skieur> skieurs;
 
 
